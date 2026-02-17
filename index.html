@@ -14,34 +14,32 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
 <script>
 function irAInstagram() {
     const usuario = "estanciaeldestino";
+    // El secreto es el parámetro ?igsh=... o simplemente la ruta /u/
+    // Esta estructura es la que mejor reconoce la App actualmente
     const appUrl = "instagram://user?username=" + usuario;
     const webUrl = "https://www.instagram.com/" + usuario + "/";
-    
-    // Intent específico para Android (es el que evita que vaya al Inicio)
-    const androidIntent = "intent://www.instagram.com/" + usuario + "/#Intent;package=com.instagram.android;scheme=https;end";
 
-    const isAndroid = /Android/i.test(navigator.userAgent);
-    const isiOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-    if (isAndroid) {
-        // En Android, el Intent es el único que salta directo al perfil
-        window.location.href = androidIntent;
-    } else if (isiOS) {
-        // En iOS intentamos abrir la app, si no redirigimos a la web
+    if (isMobile) {
+        // Intentamos abrir la app directamente
         window.location.href = appUrl;
+        
+        // Si en 800ms no se movió del sitio o falló, lo mandamos a la web
+        // Pero la mayoría de las veces esto forzará a la app a reaccionar
         setTimeout(function() {
             window.location.href = webUrl;
-        }, 500);
+        }, 800);
     } else {
-        // En PC (Desktop) abrimos en pestaña nueva
         window.open(webUrl, '_blank');
     }
 }
 </script>
+
+
 
     <style>
         :root {
