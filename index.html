@@ -1,5 +1,33 @@
 <!DOCTYPE html>
 <html lang="es">
+<script>
+function irAInstagram() {
+    const usuario = "estanciaeldestino";
+    const appUrl = "instagram://user?username=" + usuario;
+    const webUrl = "https://www.instagram.com/" + usuario + "/";
+    
+    // Intent específico para Android (es el que evita que vaya al Inicio)
+    const androidIntent = "intent://www.instagram.com/" + usuario + "/#Intent;package=com.instagram.android;scheme=https;end";
+
+    const isAndroid = /Android/i.test(navigator.userAgent);
+    const isiOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    if (isAndroid) {
+        // En Android, el Intent es el único que salta directo al perfil
+        window.location.href = androidIntent;
+    } else if (isiOS) {
+        // En iOS intentamos abrir la app, si no redirigimos a la web
+        window.location.href = appUrl;
+        setTimeout(function() {
+            window.location.href = webUrl;
+        }, 500);
+    } else {
+        // En PC (Desktop) abrimos en pestaña nueva
+        window.open(webUrl, '_blank');
+    }
+}
+</script>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -348,9 +376,10 @@
     <i class="fab fa-whatsapp"></i> CONSULTAR POR WHATSAPP
 </a>
 
-<a href="https://www.instagram.com/_u/estanciaeldestino/" target="_blank" rel="noopener noreferrer" class="btn btn-instagram">
+<a href="javascript:void(0)" onclick="irAInstagram()" class="btn btn-instagram">
     <i class="fab fa-instagram"></i> PÁGINA DE INSTAGRAM
 </a>
+
 
 
         </div>
