@@ -14,30 +14,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-<script>
-function irAInstagram() {
-    const usuario = "estanciaeldestino";
-    // El secreto es el parámetro ?igsh=... o simplemente la ruta /u/
-    // Esta estructura es la que mejor reconoce la App actualmente
-    const appUrl = "instagram://user?username=" + usuario;
-    const webUrl = "https://www.instagram.com/" + usuario + "/";
 
-    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-    if (isMobile) {
-        // Intentamos abrir la app directamente
-        window.location.href = appUrl;
-        
-        // Si en 800ms no se movió del sitio o falló, lo mandamos a la web
-        // Pero la mayoría de las veces esto forzará a la app a reaccionar
-        setTimeout(function() {
-            window.location.href = webUrl;
-        }, 800);
-    } else {
-        window.open(webUrl, '_blank');
-    }
-}
-</script>
 
 
 
@@ -374,9 +351,10 @@ function irAInstagram() {
     <i class="fab fa-whatsapp"></i> CONSULTAR POR WHATSAPP
 </a>
 
-<a href="javascript:void(0)" onclick="irAInstagram()" class="btn btn-instagram">
+<a href="https://www.instagram.com/estanciaeldestino/?igsh=MTc4MmM1YmI2Ng%3D%3D" target="_blank" rel="noopener noreferrer" class="btn btn-instagram">
     <i class="fab fa-instagram"></i> PÁGINA DE INSTAGRAM
 </a>
+
 
 
 
