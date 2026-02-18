@@ -26,14 +26,26 @@
             --blanco-marfil: #f5f5f5;
         }
 
-        body {
+                body {
             margin: 0;
             padding: 0;
-            background-color: var(--fondo);
+            
+            /* Color de respaldo por si no carga la imagen */
+            background-color: var(--fondo); 
+            
+            /* Aquí está la magia: Una capa oscura al 85% sobre la imagen fondo.jpg */
+            background-image: linear-gradient(rgba(26, 21, 18, 0.85), rgba(26, 21, 18, 0.9)), url('fondo.jpg');
+            
+            /* Ajustes para que se vea bien */
+            background-size: cover;       /* Cubre toda la pantalla */
+            background-position: center;  /* Centra la imagen */
+            background-attachment: fixed; /* Efecto elegante: el fondo no se mueve al hacer scroll */
+            
             color: var(--blanco-marfil);
             font-family: 'Lato', sans-serif;
             text-align: center;
         }
+
 
         /* Botón WhatsApp Flotante */
         .wsp-flotante {
